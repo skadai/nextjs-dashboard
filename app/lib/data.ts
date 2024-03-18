@@ -1,6 +1,6 @@
 import { sql } from '@vercel/postgres';
 import { unstable_noStore as noStore } from 'next/cache';
-
+import {notFound} from 'next/navigation';
 import {
   CustomerField,
   CustomersTableType,
@@ -169,7 +169,7 @@ export async function fetchInvoiceById(id: string) {
       // Convert amount from cents to dollars
       amount: invoice.amount / 100,
     }));
-
+   
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
